@@ -1,10 +1,17 @@
 import React from 'react';
 
-function Star() {
+type StarProps = {
+  index: number;
+  currentRating: number;
+};
+
+function Star({ index, currentRating }: StarProps) {
+  const isActive = currentRating >= index;
+  const starColor = isActive ? 'bs-app-star-active' : 'bs-app-star-inactive';
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5"
+      className={`bs-app-star ${starColor}`}
       viewBox="0 0 20 20"
       fill="currentColor"
     >
