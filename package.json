@@ -7,6 +7,8 @@
     "npm": "6.14.10"
   },
   "dependencies": {
+    "@headlessui/react": "^1.5.0",
+    "@heroicons/react": "^1.0.6",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -40,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.0",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "autoprefixer": "^10.4.4",
@@ -63,5 +66,8 @@
     "*.{js,jsx,ts,tsx}": [
       "./node_modules/.bin/eslint --fix"
     ]
-  }
+  },
+  "eslintIgnore": [
+    "tailwind.config.js"
+  ]
 }
