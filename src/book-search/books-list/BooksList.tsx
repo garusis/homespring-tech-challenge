@@ -1,6 +1,6 @@
 import React from 'react';
 import Book from './Book';
-import PagingControl from './PagingControl';
+import PagingControl from './paging/PagingControl';
 
 function BooksList() {
   return (
