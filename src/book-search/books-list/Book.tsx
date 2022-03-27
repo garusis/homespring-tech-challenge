@@ -25,7 +25,7 @@ function Book() {
         </h1>
         <div className="mt-2 flex">
           {[1, 2, 3, 4, 5].map((index) => (
-            <Star index={index} currentRating={4} />
+            <Star key={index} index={index} currentRating={4} />
           ))}
         </div>
         <h4 className="mt-2 flex text-gray-500 text-sm">
