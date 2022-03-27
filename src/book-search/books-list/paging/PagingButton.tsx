@@ -7,12 +7,13 @@ type PagingButtonProps = {
 };
 
 function PagingButton({ pageNumber, currentPage }: PagingButtonProps) {
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const borderActive = pageNumber === currentPage;
   const handleClick = () => {
     if (!pageNumber) return;
-    setSearchParams({ page: pageNumber.toString() });
+    searchParams.set('page', pageNumber.toString());
+    setSearchParams(searchParams);
   };
   return (
     <button

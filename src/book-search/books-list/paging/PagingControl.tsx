@@ -25,15 +25,8 @@ export function usePageNumbers(
 }
 
 function PagingControl() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const pageParam = searchParams.get('page');
-  const currentPage = Number(pageParam ?? '1');
-
-  useEffect(() => {
-    if (!pageParam) {
-      setSearchParams({ page: '1' });
-    }
-  }, [pageParam, setSearchParams]);
+  const [searchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get('page') ?? '1');
 
   const lastPage = 10;
 

@@ -8,7 +8,7 @@ type PagingArrowProps = {
 };
 
 function PagingArrow({ currentPage, direction, lastPage }: PagingArrowProps) {
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const isArrowInactive =
     direction === 'left' ? currentPage === 1 : currentPage === lastPage;
@@ -19,7 +19,8 @@ function PagingArrow({ currentPage, direction, lastPage }: PagingArrowProps) {
 
   const handleClick = () => {
     const nextPage = direction === 'left' ? currentPage - 1 : currentPage + 1;
-    setSearchParams({ page: nextPage.toString() });
+    searchParams.set('page', nextPage.toString());
+    setSearchParams(searchParams);
   };
 
   return (

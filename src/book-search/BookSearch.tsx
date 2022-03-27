@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import FilterBar from './FilterBar';
 import SearchBar from './SearchBar';
 import BooksList from './books-list/BooksList';
 
 function BookSearch() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const filter = searchParams.get('filter');
+    const page = searchParams.get('page');
+    const search = searchParams.get('search');
+
+    if (filter !== null && page !== null && search !== null) return;
+    const defaultParams = {
+      filter: '',
+      page: '1',
+      search: '',
+    };
+    setSearchParams(defaultParams);
+  }, [searchParams, setSearchParams]);
+
   return (
     <div className="bs-app-main-container container flex mx-auto">
       <FilterBar />

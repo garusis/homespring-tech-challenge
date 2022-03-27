@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 function SearchBar() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchParam = searchParams.get('search');
+  const searchValue = searchParam ?? '';
+
+  const handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
+    searchParams.set('search', event.currentTarget.value);
+    setSearchParams(searchParams);
+  };
+
   return (
     <aside>
       <label htmlFor="search-input" className="flex h-14 items-center">
@@ -21,6 +31,8 @@ function SearchBar() {
           id="search-input"
           className="border-none text-base focus:border-none focus:ring-0 placeholder:text-zinc-400"
           placeholder="Start searching..."
+          value={searchValue}
+          onChange={handleChange}
         />
       </label>
     </aside>
