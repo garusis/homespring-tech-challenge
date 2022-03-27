@@ -3,11 +3,25 @@ import { useSearchParams } from 'react-router-dom';
 import PagingArrow from './PagingArrow';
 import PagingButton from './PagingButton';
 
+export class InvalidPageNumber extends Error {}
+
 export function usePageNumbers(
   currentPage: number,
   lastPage: number,
 ): Array<number | null> {
-  return [1, 2, null, 9, 10];
+  if (currentPage > lastPage) {
+    throw new InvalidPageNumber();
+  }
+
+  if (lastPage <= 5) {
+    return Array.from(Array(lastPage), (_, index) => index + 1);
+  }
+
+  if (currentPage <= 2 || currentPage >= lastPage - 1) {
+    return [1, 2, null, lastPage - 1, lastPage];
+  }
+
+  return [1, null, currentPage, null, lastPage];
 }
 
 function PagingControl() {
@@ -31,9 +45,9 @@ function PagingControl() {
         currentPage={currentPage}
         lastPage={lastPage}
       />
-      {pageNumbers.map((pageNumber) => (
+      {pageNumbers.map((pageNumber, index) => (
         <PagingButton
-          key={pageNumber}
+          key={pageNumber ?? `unknown-${index}`}
           pageNumber={pageNumber}
           currentPage={currentPage}
         />
