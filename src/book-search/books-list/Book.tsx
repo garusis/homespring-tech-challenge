@@ -21,9 +21,15 @@ function AdditionalBookInformation({
     <h4 className="mt-2 flex text-gray-500 text-sm">
       {[pages, publishedDate, publisher].reduce((arr, elem, index, array) => {
         if (elem) {
-          arr.push(<span>{elem}</span>);
+          // eslint-disable-next-line react/no-array-index-key
+          arr.push(<span key={`elem-${index}`}>{elem}</span>);
           if (index < array.length - 1) {
-            arr.push(<span className="mx-3">•</span>);
+            arr.push(
+              // eslint-disable-next-line react/no-array-index-key
+              <span key={`separator-${index}`} className="mx-3">
+                •
+              </span>,
+            );
           }
         }
         return arr;

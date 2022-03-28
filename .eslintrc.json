@@ -39,7 +39,8 @@
       {
         "assert": "either"
       }
-    ]
+    ],
+    "no-void": "off"
   },
   "settings": {
     "import/resolver": {

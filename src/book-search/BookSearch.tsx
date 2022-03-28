@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import FilterBar from './FilterBar';
 import SearchBar from './SearchBar';
 import BooksList from './books-list/BooksList';
+import { BooksCountContextProvider } from '../hooks/useBooksCount';
 
 function BookSearch() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,13 +24,15 @@ function BookSearch() {
   }, [searchParams, setSearchParams]);
 
   return (
-    <div className="bs-app-main-container container flex mx-auto">
-      <FilterBar />
-      <div className="bs-app-list-container ml-11 bg-white flex-grow rounded">
-        <SearchBar />
-        <BooksList />
+    <BooksCountContextProvider>
+      <div className="bs-app-main-container container flex mx-auto">
+        <FilterBar />
+        <div className="bs-app-list-container ml-11 bg-white flex-grow rounded">
+          <SearchBar />
+          <BooksList />
+        </div>
       </div>
-    </div>
+    </BooksCountContextProvider>
   );
 }
 

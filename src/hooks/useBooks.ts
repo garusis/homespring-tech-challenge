@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import useDebounce from './useDebounce';
 import FetchError from '../errors/FetchError';
+import { useSetBooksCount } from './useBooksCount';
 
 export type BookData = {
   id: string;
@@ -46,22 +47,20 @@ export default function useBooks() {
         urlSearch.set('filter', filter);
       }
 
-      // eslint-disable-next-line no-console
-      console.error(
-        `${process.env.REACT_APP_BOOKS_API}?${urlSearch.toString()}`,
-      );
-
       const response = await fetch(
         `${process.env.REACT_APP_BOOKS_API}?${urlSearch.toString()}`,
       );
       if (!response.ok) {
         throw new FetchError(response);
       }
+
       return response.json();
     },
   );
 
   const data = queryResponse.data || { totalItems: 0, items: [] };
+
+  useSetBooksCount(data.totalItems);
 
   return data.items;
 }

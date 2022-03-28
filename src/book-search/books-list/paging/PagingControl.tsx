@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import PagingArrow from './PagingArrow';
 import PagingButton from './PagingButton';
 import InvalidPageNumberError from '../../../errors/InvalidPageNumberError';
+import useBooksCount from '../../../hooks/useBooksCount';
 
 export function usePageNumbers(
   currentPage: number,
@@ -26,10 +27,11 @@ export function usePageNumbers(
 function PagingControl() {
   const [searchParams] = useSearchParams();
   const currentPage = Number(searchParams.get('page') ?? '1');
-
-  const lastPage = 10;
-
+  const pageSize = Number(searchParams.get('pageSize') ?? '10');
+  const totalItems = useBooksCount();
+  const lastPage = Math.ceil(totalItems / pageSize) || 1;
   const pageNumbers = usePageNumbers(currentPage, lastPage);
+
   return (
     <div className="my-8 flex justify-center">
       <PagingArrow
