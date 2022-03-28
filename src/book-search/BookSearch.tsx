@@ -17,6 +17,7 @@ function BookSearch() {
       filter: '',
       page: '1',
       search: '',
+      pageSize: '10',
     };
     setSearchParams(defaultParams);
   }, [searchParams, setSearchParams]);

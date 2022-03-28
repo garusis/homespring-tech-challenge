@@ -1,11 +1,12 @@
-import { InvalidPageNumber, usePageNumbers } from './PagingControl';
+import InvalidPageNumberError from '../../../errors/InvalidPageNumberError';
+import { usePageNumbers } from './PagingControl';
 
 describe('usePageNumbers', () => {
   it('Throws when currentPage is higher than last page', () => {
     try {
       usePageNumbers(2, 1);
     } catch (e) {
-      expect(e).toBeInstanceOf(InvalidPageNumber);
+      expect(e).toBeInstanceOf(InvalidPageNumberError);
     }
   });
 

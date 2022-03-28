@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect } from 'react';
+import React, { SyntheticEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 function FilterBar() {
@@ -12,7 +12,7 @@ function FilterBar() {
   };
 
   return (
-    <aside className="w-64">
+    <aside className="w-64 min-w-[16rem]">
       <header className="font-bold text-base">
         <label htmlFor="categories-filter">Filter your results</label>
       </header>

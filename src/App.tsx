@@ -1,4 +1,5 @@
 import React from 'react';
+import { QueryClientProvider, QueryClient } from 'react-query';
 import { Link, Route, Routes, HashRouter } from 'react-router-dom';
 import BookSearch from './book-search/BookSearch';
 import './App.css';
@@ -14,14 +15,18 @@ function NoFound() {
   );
 }
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<BookSearch />} />
-        <Route path="*" element={<NoFound />} />
-      </Routes>
-    </HashRouter>
+    <QueryClientProvider client={queryClient}>
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<BookSearch />} />
+          <Route path="*" element={<NoFound />} />
+        </Routes>
+      </HashRouter>
+    </QueryClientProvider>
   );
 }
 

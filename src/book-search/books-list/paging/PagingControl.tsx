@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PagingArrow from './PagingArrow';
 import PagingButton from './PagingButton';
-
-export class InvalidPageNumber extends Error {}
+import InvalidPageNumberError from '../../../errors/InvalidPageNumberError';
 
 export function usePageNumbers(
   currentPage: number,
   lastPage: number,
 ): Array<number | null> {
   if (currentPage > lastPage) {
-    throw new InvalidPageNumber();
+    throw new InvalidPageNumberError();
   }
 
   if (lastPage <= 5) {
