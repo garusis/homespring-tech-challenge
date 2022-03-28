@@ -33,7 +33,7 @@ export default function useBooks() {
   const queryResponse = useQuery<BookQueryResponse>(
     ['books', filter, page, pageSize, search],
     async () => {
-      if (!search) return [];
+      if (!search) return { totalItems: 0, items: [] };
 
       const urlSearch = new URLSearchParams();
       urlSearch.set('key', process.env.REACT_APP_GOOGLE_BOOKS_API_KEY ?? '');
@@ -45,6 +45,11 @@ export default function useBooks() {
       if (filter) {
         urlSearch.set('filter', filter);
       }
+
+      // eslint-disable-next-line no-console
+      console.error(
+        `${process.env.REACT_APP_BOOKS_API}?${urlSearch.toString()}`,
+      );
 
       const response = await fetch(
         `${process.env.REACT_APP_BOOKS_API}?${urlSearch.toString()}`,
