@@ -25,7 +25,7 @@ to test some hooks.
 :warning:  Is important to use these specific versions to avoid non-functional issues. This repository contains
 an `.nvmrc` file that automatically switch to the required versions if you use NVM.
 
-* NodeJS 14.15.4, you can install using [NVM](https://github.com/nvm-sh/nvm) (Recommended) or downloading from
+* NodeJS 14.19.1, you can install using [NVM](https://github.com/nvm-sh/nvm) (Recommended) or downloading from
   the [NodeJS](https://nodejs.org/en/download/) web page.
 
 * Clone the repositories for [Client](https://github.com/garusis/homespring-tech-challenge).
