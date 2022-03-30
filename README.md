@@ -5,11 +5,6 @@ displays results in a friendly way.
 
 ## Implementation Notes
 
-This version doesn't use a custom backend API to perform search in the Google Books API because this is by default
-public and even when this project uses a Google API Key it is safe to be publicly exposed if the Google API Key has
-rights only to the public domain of the Books API. Using API keys with rights to get access to Bookshelfs or User data
-is not recommended for this project.
-
 This project uses [Tailwind CSS](https://tailwindcss.com) to manage styling the UI, but this is the first time that I
 used this library so probably you will find things that can be improved. I created some custom classes to solve
 inconsistencies between the Figma design and the common Tailwing CSS classes.
